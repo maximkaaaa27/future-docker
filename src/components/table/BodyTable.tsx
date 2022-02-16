@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export const BodyTable = ({db} : {db: any[] | undefined}) => {
+export const BodyTable = ({db} : {db: any[] | null}) => {
 console.log('render')
   return (
     <>

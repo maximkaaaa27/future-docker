@@ -1,60 +1,30 @@
-import React, { useState } from 'react';
-import { sortingByDirection } from '../../utils/sortingByDirection';
-
-type INameColumns =  'id' | 'firstName' | 'email' | 'phone';
-
-interface IInitState {
-  id: string
-  firstName: string
-  email: string
-  phone: string
-}
-
-
-export const HeadTable = ({ setDb }: {setDb: React.Dispatch<React.SetStateAction<any[] | undefined>>}) => {
-
-  const arrowDownHead = '⌄';
-  const arrowUpHead = '⌃';
-
-
-  const initState: IInitState = {
-    id: '',
-    firstName: '',
-    email: '',
-    phone: ''
-  }
-
-  const [directionSort, setDirectionSort] = useState(initState)
-
-  const toggleArrow = (arrow : string) => arrow ===  arrowDownHead ? arrowUpHead :arrowDownHead
+import React from 'react';
+import { INameColumns, SortingByDirection } from '../../utils/SortingByDirection';
 
 
 
-  const headClickHandle = (nameColumn: INameColumns) => {
 
-    if (directionSort[nameColumn] !== '') {
+export const HeadTable = ({ setDb }: {setDb: React.Dispatch<React.SetStateAction<any[] | null>>}) => {
 
-      setDirectionSort ( prev => ({...initState, [nameColumn]: toggleArrow(prev[nameColumn])}));
 
-      setDb(prev => sortingByDirection(prev, nameColumn, toggleArrow(directionSort[nameColumn])));
+  const {sortField, directionsSort} = SortingByDirection();
 
-    } else {
 
-      setDirectionSort( () => ({...initState, [nameColumn] : arrowDownHead}) );
-      
-      setDb(prev => sortingByDirection(prev, nameColumn, arrowDownHead));
+  const headClickHandle = (e: any) => {
+    if (typeof e.target.id === 'string') {
+      setDb(prev => sortField(prev, e.target.id))
     }
   }
 
   return (
-        <tr>
-          <th onClick={() => headClickHandle('id')}> id {directionSort.id} </th>
+    <tr onClick={headClickHandle}>
+          <th id='id'> id {directionsSort.id} </th>
 
-          <th onClick={() => headClickHandle('firstName')}> firstName {directionSort.firstName} </th>
+          <th id='firstName'> firstName {directionsSort.firstName} </th>
 
-          <th onClick={() => headClickHandle('email')}> email  {directionSort.email} </th>
+          <th id='email'> email  {directionsSort.email} </th>
 
-          <th  onClick={() => headClickHandle('phone')}> phone {directionSort.phone} </th>
-        </tr>
+          <th id='phone'> phone {directionsSort.phone} </th>
+    </tr>
   )
 }

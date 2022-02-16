@@ -9,7 +9,6 @@ export const useDataFill = () => {
 
   const getData = useCallback( async () => {
 
-
     setLoading(true)
 
     try {
@@ -29,7 +28,6 @@ export const useDataFill = () => {
 
     }
   }, [])
-
 
   return {loading, getData}
 }

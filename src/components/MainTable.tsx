@@ -8,7 +8,7 @@ import { HeadTable } from './table/HeadTable';
 export const MainTable = () => {
 
   const { getData } = useDataFill();
-  const [db, setDb] = useState<any[]>()
+  const [db, setDb] = useState<any[] | null>(null);
 
   const fetching = async () => {
     const myData = await getData();
@@ -17,7 +17,6 @@ export const MainTable = () => {
         ...myData[key]
       }
     })
-
     setDb(myDataArray)
   }
 
