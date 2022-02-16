@@ -1,5 +1,6 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { useDataFill } from '../hooks/getdb.hook';
+import { SortingByDirection } from '../utils/SortingByDirection';
 import { BodyTable } from './table/BodyTable';
 import { HeadTable } from './table/HeadTable';
 
@@ -7,39 +8,32 @@ import { HeadTable } from './table/HeadTable';
 
 export const MainTable = () => {
 
-  const { getData } = useDataFill();
-  const [db, setDb] = useState<any[] | null>(null);
-
-  const fetching = async () => {
-    const myData = await getData();
-    const myDataArray = Object.keys(myData).map(key => {
-      return {
-        ...myData[key]
-      }
-    })
-    setDb(myDataArray)
-  }
-
-  
+  const { db, getData } = useDataFill();
+  const [unsortDb, setUnsortDb] = useState(db);
+  const { directionsSort, sortField } = SortingByDirection();
+ 
   const handleClick = () => {
-    fetching()
+    getData()
+    setUnsortDb(db)
   }
-
-  
 
   return (
     <>
       <table>
       <thead>
-        <HeadTable setDb={setDb}/>
+        <HeadTable 
+          setDb={setUnsortDb} 
+          directionsSort={directionsSort}
+          sortField={sortField}
+        />
       </thead>
 
       <tbody>
-        <BodyTable db={db}/>
+        <BodyTable db={unsortDb} />
       </tbody>
 
     </table>
-    <button onClick={handleClick}>{'⟳'}</button>
+    <button onClick={handleClick}>Update</button>
     </>
 
   )

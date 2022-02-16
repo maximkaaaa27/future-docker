@@ -1,8 +1,10 @@
 import React from "react";
 
 
-export const BodyTable = ({db} : {db: any[] | null}) => {
-console.log('render')
+
+export const BodyTable = ({db}: {db: any[] | null}) => {
+
+
   return (
     <>
     {db && db.map(item => (

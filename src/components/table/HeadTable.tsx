@@ -1,13 +1,21 @@
 import React from 'react';
-import { INameColumns, SortingByDirection } from '../../utils/SortingByDirection';
+import { INameColumns } from '../../utils/SortingByDirection';
+
+interface Idirection  {
+  id: string,
+  firstName: string,
+  email: string,
+  phone: string,
+}
 
 
+export const HeadTable = ({ setDb, directionsSort, sortField }: {
+  setDb: React.Dispatch<React.SetStateAction<any[] | null>>
+  directionsSort: Idirection
+  sortField: (array: any[] | null, field: INameColumns ) => any[] | null
+}) => {
 
 
-export const HeadTable = ({ setDb }: {setDb: React.Dispatch<React.SetStateAction<any[] | null>>}) => {
-
-
-  const {sortField, directionsSort} = SortingByDirection();
 
 
   const headClickHandle = (e: any) => {

@@ -6,6 +6,7 @@ const filltextUrl = 'http://www.filltext.com/?rows=32&id={number|1000}&firstName
 export const useDataFill = () => {
 
   const [loading, setLoading] = useState(false);
+  const [db, setDb] = useState<any[] | null>(null);
 
   const getData = useCallback( async () => {
 
@@ -22,12 +23,18 @@ export const useDataFill = () => {
 
       setLoading(false);
 
-      return data;
+      const dataArray = Object.keys(data).map(key => {
+        return {
+          ...data[key]
+        }
+      })
 
+      setDb(dataArray)
+      return data
     } catch(e) {
 
     }
   }, [])
 
-  return {loading, getData}
+  return {loading, getData, db}
 }
