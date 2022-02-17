@@ -2,7 +2,9 @@
   margin: 2rem 0;
   padding: 15px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 table,
@@ -11,4 +13,9 @@ th {
   width: 80px;
   cursor: pointer;
   border: 1px solid #313b2f;
+}
+
+.info-person {
+  background-color: #b6b3b3;
+  text-align: center;
 }
