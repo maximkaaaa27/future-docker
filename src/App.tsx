@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
-import { MainTable } from './components/MainTable';
+import { useRoutes } from './routes';
 
 function App() {
+  
+  const routes = useRoutes();
+
+  
   return (
-    <div className="App">
-      <MainTable />
+    <div className="main">
+      {routes}
     </div>
   );
 }

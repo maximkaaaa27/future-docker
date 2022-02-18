@@ -1,5 +1,5 @@
 import React from "react";
-import { IPerson } from "./MainTable";
+import { IPerson } from "../MainTable";
 
 export const InfoBlock = ({selectPerson}: {selectPerson: IPerson | null}) => {
 

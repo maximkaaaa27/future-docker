@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDataFill } from '../hooks/getdb.hook';
 import { SortingByDirection } from '../utils/SortingByDirection';
-import { InfoBlock } from './InfoBlock';
+import { InfoBlock } from './table/InfoBlock';
 import { BodyTable } from './table/BodyTable';
 import { HeadTable } from './table/HeadTable';
 
@@ -27,16 +27,9 @@ export const MainTable = () => {
   const [selectPerson, setSelectPerson] = useState<IPerson | null>(null);
   const { directionsSort, sortField } = SortingByDirection();
  
-  const handleClick = () => {
-    getData()
-    setUnsortDb(db)
-  }
 
   return (
     <>
-    <div>
-    <button onClick={handleClick}>Update</button>
-    </div>
       <table>
       <thead>
         <HeadTable 
@@ -54,8 +47,6 @@ export const MainTable = () => {
     <div>
       <InfoBlock selectPerson={selectPerson}/>
     </div>
-
     </>
-
   )
 }
