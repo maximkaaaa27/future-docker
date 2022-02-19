@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useDataFill } from '../hooks/getdb.hook';
+import React, { useEffect, useState } from 'react';
 import { SortingByDirection } from '../utils/SortingByDirection';
 import { InfoBlock } from './table/InfoBlock';
 import { BodyTable } from './table/BodyTable';
 import { HeadTable } from './table/HeadTable';
+import { useAppSelector } from '../hooks/redux.hook';
 
 export interface IPerson {
   id: number
@@ -22,12 +22,14 @@ export interface IPerson {
 
 export const MainTable = () => {
 
-  const { db, getData } = useDataFill();
-  const [unsortDb, setUnsortDb] = useState(db);
+  const { database } = useAppSelector(state => state.database);
+  const [unsortDb, setUnsortDb] = useState(database);
   const [selectPerson, setSelectPerson] = useState<IPerson | null>(null);
   const { directionsSort, sortField } = SortingByDirection();
  
-
+  useEffect(() => {
+    setUnsortDb(database)
+  }, [database])
   return (
     <>
       <table>

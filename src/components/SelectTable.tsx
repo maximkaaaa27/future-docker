@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDataFill } from "../hooks/getdb.hook";
 
 
 
 
 export const SelectTable = () => {
 
+  const { getData } = useDataFill()
   const initialState = {
     bigSize: false,
     normalSize: false
   }
 
   const [size, setSize] = useState(initialState)
+
+  const handleClick = (size: {bigSize: boolean, normalSize: boolean}) => {
+    getData({big: size.bigSize});
+  }
 
   return (
     <>
@@ -34,7 +40,7 @@ export const SelectTable = () => {
     </div>
 
     <Link to="/table">
-      <button disabled={!(size.normalSize || size.bigSize)}>Show Table</button>
+      <button disabled={!(size.normalSize || size.bigSize)} onClick={() => handleClick(size)}>Show Table</button>
     </Link>
     </>
   )

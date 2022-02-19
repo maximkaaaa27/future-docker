@@ -15,7 +15,7 @@ export const useDataFill = () => {
 
   const getData = useCallback( async ({big} : {big: boolean}) => {
 
-    setLoading(true)
+    setLoading(true);
 
     try {
 
@@ -35,6 +35,7 @@ export const useDataFill = () => {
           ...data[key]
         }
       })
+
       dispatch(setDataBase(dataArray))
       setDb(dataArray)
       return data
