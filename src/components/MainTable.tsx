@@ -4,6 +4,7 @@ import { InfoBlock } from './table/InfoBlock';
 import { BodyTable } from './table/BodyTable';
 import { HeadTable } from './table/HeadTable';
 import { useAppSelector } from '../hooks/redux.hook';
+import { LoadingDots } from './LoadingDots';
 
 export interface IPerson {
   id: number
@@ -22,15 +23,24 @@ export interface IPerson {
 
 export const MainTable = () => {
 
-  const { database } = useAppSelector(state => state.database);
+  const { database, loading } = useAppSelector(state => state.database);
+  const { directionsSort, sortField } = SortingByDirection();
+
   const [unsortDb, setUnsortDb] = useState(database);
   const [selectPerson, setSelectPerson] = useState<IPerson | null>(null);
-  const { directionsSort, sortField } = SortingByDirection();
+
  
   useEffect(() => {
     setUnsortDb(database)
-  }, [database])
+  }, [database]);
+
+
+
   return (
+    <>
+    {loading ? 
+    <LoadingDots />
+    :
     <>
       <table>
       <thead>
@@ -49,6 +59,7 @@ export const MainTable = () => {
     <div>
       <InfoBlock selectPerson={selectPerson}/>
     </div>
+    </>}
     </>
   )
 }

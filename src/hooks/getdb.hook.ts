@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import { setDataBase } from '../redux/databaseSlice';
+import { useCallback } from 'react';
+import { setDataBase, setLoading } from '../redux/databaseSlice';
 import { useAppDispatch } from './redux.hook';
 
 const smallTextUrl = 'http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
@@ -9,13 +9,11 @@ const bigTextUrl = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstNam
 
 export const useDataFill = () => {
 
-  const [loading, setLoading] = useState(false);
-  const [db, setDb] = useState<any[] | null>(null);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const getData = useCallback( async ({big} : {big: boolean}) => {
 
-    setLoading(true);
+    dispatch(setLoading())
 
     try {
 
@@ -28,7 +26,7 @@ export const useDataFill = () => {
         throw new Error(data.message || 'Ooops. Something going wrong...!');
       }
 
-      setLoading(false);
+      dispatch(setLoading())
 
       const dataArray = Object.keys(data).map(key => {
         return {
@@ -37,12 +35,13 @@ export const useDataFill = () => {
       })
 
       dispatch(setDataBase(dataArray))
-      setDb(dataArray)
-      return data
+
+      return data;
+
     } catch(e) {
 
     }
   }, [dispatch])
 
-  return {loading, getData, db}
+  return { getData }
 }
