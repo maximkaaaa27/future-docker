@@ -12,7 +12,6 @@ export const SelectTable = () => {
   const arrowUTF = "➪";
   const focusElements = [{ id: "normal_table" }, { id: "big_table" }];
 
-  console.log(data);
   const setFocusOnDomElement = () => {
     const item = document.getElementById(focusElements[focusElement].id);
     if (!item) return;

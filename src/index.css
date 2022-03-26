@@ -1,6 +1,16 @@
+@font-face {
+  font-family: "pixeboy";
+  src: url("./fonts/Pixeboy-z8XGD.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "press-start";
+  src: url("./fonts/PressStart2P-vaV7.ttf") format("truetype");
+}
+
 body {
   margin: 0;
   background-color: blue;
   color: lime;
-  font-family: "Times New Roman", Times, serif;
+  font-family: pixeboy;
 }
