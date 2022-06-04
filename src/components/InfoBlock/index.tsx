@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./infoblock.module.scss";
 import { IPerson } from "components/Table";
 
 export const InfoBlock = ({
@@ -9,7 +10,7 @@ export const InfoBlock = ({
   return (
     <>
       {selectPerson && (
-        <div className="info-person">
+        <div className={styles.infoPerson}>
           <div>
             Выбран пользователь:{" "}
             <b>

@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 
 import { QueryClientProvider, QueryClient } from "react-query";
 import { SelectTable } from "./components/SelectTable";

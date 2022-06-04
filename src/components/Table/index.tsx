@@ -8,7 +8,7 @@ import { SortingByDirection } from "utils/SortingByDirection";
 import { LoadingDots } from "components/common/LoadingDots";
 import { BodyTable } from "./BodyTable";
 import { HeadTable } from "./HeadTable";
-import { InfoBlock } from "./InfoBlock";
+import { InfoBlock } from "components/InfoBlock";
 
 export interface IPerson {
   id: number;
