@@ -35,19 +35,6 @@ export const SortingByDirection = () => {
       return 0;
     };
 
-    const sortByStringReverse = (a: any, b: any) => {
-      const nameA = a[field].toUpperCase();
-      const nameB = b[field].toUpperCase();
-      if (nameA > nameB) {
-        return -1;
-      }
-      if (nameA < nameB) {
-        return 1;
-      }
-
-      return 0;
-    };
-
     switch (directionsSort[field]) {
       case "":
         setDirectionsSort(() => ({ ...initState, [field]: arrowDownHead }));
@@ -65,7 +52,7 @@ export const SortingByDirection = () => {
         setDirectionsSort(() => ({ ...initState, [field]: arrowUpHead }));
         if (field === "id")
           return [...array].sort((a, b) => b[field] - a[field]);
-        return [...array].sort((a, b) => sortByStringReverse(a, b));
+        return [...array].sort((a, b) => -sortByString(a, b));
 
       default:
         return array;

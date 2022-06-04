@@ -1,5 +1,5 @@
 import React from "react";
-import { IPerson } from "../MainTable";
+import { IPerson } from "components/Table";
 
 export const InfoBlock = ({
   selectPerson,

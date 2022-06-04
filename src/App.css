@@ -1,23 +1,13 @@
 .main {
-  width: 640px;
-  height: 480px;
   border: solid;
   margin: 1rem 0;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: blue;
+  background-color: black;
   color: lime;
   font-family: press-start;
-}
-
-table,
-th {
-  background-color: blueviolet;
-  width: 80px;
-  cursor: pointer;
-  border: 1px solid #313b2f;
 }
 
 .info-person {

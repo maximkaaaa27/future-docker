@@ -12,9 +12,10 @@ export const useDataFill = () => {
   const dispatch = useAppDispatch();
 
   const getData = useCallback(
-    async ({ big }: { big: boolean }) => {
+    async ({ size }: { size?: string }) => {
       dispatch(setLoading());
-
+      if (!size) return;
+      const big = size === "big" ? true : false;
       try {
         const url = big ? bigTextUrl : smallTextUrl;
 
@@ -36,7 +37,9 @@ export const useDataFill = () => {
         dispatch(setDataBase(dataArray));
 
         return data;
-      } catch (e) {}
+      } catch (e: any) {
+        console.log(e.message);
+      }
     },
     [dispatch]
   );

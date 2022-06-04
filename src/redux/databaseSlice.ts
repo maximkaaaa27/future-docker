@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPerson } from "../components/MainTable";
+import { IPerson } from "components/Table";
 import { RootState } from "./store";
 
 interface IInitialState {
@@ -20,6 +20,7 @@ const databaseSlice = createSlice({
       ...state,
       database: action.payload,
     }),
+
     setLoading: (state) => ({ ...state, loading: !state.loading }),
   },
 });
