@@ -1,0 +1,18 @@
+# для локального запуска
+services:
+  client:
+    image: node:14
+    volumes:
+      - ./:/opt/app
+    working_dir: /opt/app
+    command: bash -c "corepack enable && DANGEROUSLY_DISABLE_HOST_CHECK=true yarn start"
+
+  nginx:
+    image: nginx
+    hostname: future-docker
+    volumes:
+      - ./docker/site.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 127.0.0.1:80:80
+    links:
+      - client
